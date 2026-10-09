@@ -3,6 +3,332 @@
    Velvet Black, Champagne Gold Accents, Minimal & Classy
    ============================================================ */
 
+/* ============================================================
+   ENVELOPE INTRO + PASSWORD GATE
+   ============================================================ */
+
+/* Full-screen overlay that sits above everything */
+#gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(ellipse at center, #1a0a2e 0%, #0a0010 60%, #000 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#gate-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ── Floating particle background ── */
+.gate-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.gate-particles .petal {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-primary, #d4af37);
+  opacity: 0;
+  animation: floatUp var(--dur, 6s) ease-in var(--delay, 0s) infinite;
+}
+@keyframes floatUp {
+  0%   { opacity: 0; transform: translateY(110vh) scale(0.4) rotate(0deg); }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.4; }
+  100% { opacity: 0; transform: translateY(-10vh) scale(1) rotate(360deg); }
+}
+
+/* ── Hint text above envelope ── */
+.gate-hint {
+  text-align: center;
+  color: rgba(212, 175, 55, 0.75);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  animation: pulseFade 2.5s ease-in-out infinite;
+}
+@keyframes pulseFade {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+/* ── Envelope screens ── */
+#envelope-screen,
+#password-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ── Envelope wrap ── */
+#envelope-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ── Main envelope body ── */
+.env-body {
+  position: relative;
+  width: 260px;
+  height: 180px;
+  background: linear-gradient(145deg, #2a1a4e, #1a0a2e);
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  border-radius: 4px 4px 8px 8px;
+  box-shadow:
+    0 0 40px rgba(212, 175, 55, 0.18),
+    0 20px 60px rgba(0,0,0,0.6);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#envelope-wrap:hover .env-body {
+  transform: scale(1.04) translateY(-4px);
+  box-shadow: 0 0 60px rgba(212, 175, 55, 0.35), 0 30px 80px rgba(0,0,0,0.7);
+}
+
+/* ── Envelope flap (top triangle) ── */
+.env-flap {
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 0;
+  border-left: 130px solid transparent;
+  border-right: 130px solid transparent;
+  border-top: 95px solid rgba(212, 175, 55, 0.18);
+  transform-origin: top center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+}
+.env-body.opening .env-flap {
+  transform: rotateX(-175deg);
+}
+
+/* ── Bottom triangles (envelope sides) ── */
+.env-body::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 0;
+  border-bottom: 90px solid rgba(212, 175, 55, 0.12);
+  border-right: 130px solid transparent;
+  z-index: 2;
+}
+.env-body::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 0; height: 0;
+  border-bottom: 90px solid rgba(212, 175, 55, 0.12);
+  border-left: 130px solid transparent;
+  z-index: 2;
+}
+
+/* ── Heart seal ── */
+.env-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -54%);
+  font-size: 2.2rem;
+  color: #d4af37;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+  z-index: 4;
+  animation: heartBeat 1.8s ease-in-out infinite;
+  transition: opacity 0.4s;
+}
+@keyframes heartBeat {
+  0%, 100% { transform: translate(-50%, -54%) scale(1); }
+  30%       { transform: translate(-50%, -54%) scale(1.18); }
+  60%       { transform: translate(-50%, -54%) scale(0.95); }
+}
+.env-body.opening .env-seal {
+  opacity: 0;
+}
+
+/* ── Inner letter that rises up ── */
+.env-letter {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background: linear-gradient(145deg, #fffdf5, #f6e8c3);
+  width: 210px;
+  height: 120px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.env-letter span {
+  font-family: 'Playfair Display', serif;
+  color: #5a3e1b;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+.env-letter .env-name {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #2a1800;
+  margin-top: 2px;
+}
+.env-body.opening .env-letter {
+  transform: translateX(-50%) translateY(-55px);
+}
+
+/* ── "Tap to open" hint ── */
+.tap-hint {
+  margin-top: 1.5rem;
+  color: rgba(212, 175, 55, 0.7);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  animation: pulseFade 2s ease-in-out infinite;
+}
+
+/* ── Password card ── */
+.pw-card {
+  background: rgba(18, 10, 40, 0.92);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  width: min(380px, 90vw);
+  text-align: center;
+  box-shadow:
+    0 0 60px rgba(212, 175, 55, 0.15),
+    0 30px 80px rgba(0,0,0,0.7);
+  animation: cardSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes cardSlideIn {
+  from { opacity: 0; transform: scale(0.85) translateY(30px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.pw-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: spinGlow 3s ease-in-out infinite;
+}
+@keyframes spinGlow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(212,175,55,0.5)); }
+  50%       { filter: drop-shadow(0 0 20px rgba(212,175,55,0.9)); }
+}
+
+.pw-title {
+  font-family: 'Cinzel', serif;
+  color: #d4af37;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+.pw-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 2rem;
+}
+
+/* Input wrapper */
+.pw-input-wrap {
+  position: relative;
+  margin-bottom: 0.6rem;
+}
+#pw-input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1.6rem;
+  letter-spacing: 0.35em;
+  text-align: center;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+#pw-input:focus {
+  border-color: rgba(212, 175, 55, 0.75);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+#pw-input.shake {
+  animation: shake 0.45s ease;
+  border-color: #e05a5a !important;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-6px); }
+  80%       { transform: translateX(6px); }
+}
+
+/* Error text */
+.pw-error {
+  color: #e07070;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  min-height: 1.2em;
+  margin-bottom: 1rem;
+}
+
+/* Submit button */
+.pw-btn {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #d4af37, #9b7829);
+  border: none;
+  border-radius: 12px;
+  color: #0a0a10;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+  margin-top: 0.4rem;
+}
+.pw-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+}
+.pw-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Main content hidden until unlocked ── */
+#main-content {
+  opacity: 0;
+  transition: opacity 1s ease 0.3s;
+}
+#main-content.revealed {
+  opacity: 1;
+}
+
 :root {
   --bg-deep: #070709;
   --bg-surface: #0e0e12;

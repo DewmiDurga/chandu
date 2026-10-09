@@ -18,6 +18,59 @@
 </head>
 
 <body>
+
+  <!-- ══════════════════════════════════════════════
+       ENVELOPE INTRO + PASSWORD GATE OVERLAY
+       ══════════════════════════════════════════════ -->
+  <div id="gate-overlay">
+
+    <!-- Floating petals / particles background -->
+    <div class="gate-particles" id="gate-particles"></div>
+
+    <!-- STEP 1: Envelope screen -->
+    <div id="envelope-screen">
+      <p class="gate-hint">A secret message awaits you...</p>
+
+      <div id="envelope-wrap" onclick="openEnvelope()">
+        <div class="env-body">
+          <!-- Envelope flap (animates open) -->
+          <div class="env-flap"></div>
+          <!-- Heart seal -->
+          <div class="env-seal">♥</div>
+          <!-- Inner letter peek -->
+          <div class="env-letter">
+            <span>For</span>
+            <span class="env-name">Chandu</span>
+          </div>
+        </div>
+        <p class="tap-hint">Tap to open ✦</p>
+      </div>
+    </div>
+
+    <!-- STEP 2: Password screen (hidden initially) -->
+    <div id="password-screen" style="display:none;">
+      <div class="pw-card">
+        <div class="pw-icon">🔐</div>
+        <h2 class="pw-title">Enter the Secret Code</h2>
+        <p class="pw-subtitle">Only the one who knows our special date can enter</p>
+        <div class="pw-input-wrap">
+          <input id="pw-input" type="password" maxlength="8" placeholder="••••••••"
+                 autocomplete="off" oninput="checkPassword()" />
+          <div id="pw-dots">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <p id="pw-error" class="pw-error"></p>
+        <button class="pw-btn" onclick="submitPassword()">Open ✦</button>
+      </div>
+    </div>
+
+  </div><!-- /#gate-overlay -->
+
+  <!-- ══ Main content (hidden until password unlocked) ══ -->
+  <div id="main-content">
+
   <!-- Ambient Gold Dust Particles Canvas -->
   <canvas id="starfield-canvas"></canvas>
 
@@ -352,6 +405,83 @@
 
   <!-- Canvas for Confetti & Toast Sparkles -->
   <canvas id="confetti-canvas"></canvas>
+
+  </div><!-- /#main-content -->
+
+  <!-- ══ GATE LOGIC ══ -->
+  <script>
+    /* ── Floating gold particles in gate overlay ── */
+    (function spawnPetals() {
+      const container = document.getElementById('gate-particles');
+      for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.cssText = [
+          `left:${Math.random() * 100}%`,
+          `--dur:${4 + Math.random() * 6}s`,
+          `--delay:${Math.random() * 6}s`,
+          `width:${3 + Math.random() * 6}px`,
+          `height:${3 + Math.random() * 6}px`,
+          `opacity:0`
+        ].join(';');
+        container.appendChild(p);
+      }
+    })();
+
+    /* ── Step 1: open envelope on click ── */
+    function openEnvelope() {
+      const envBody = document.querySelector('.env-body');
+      envBody.classList.add('opening');
+      // After animation, switch to password screen
+      setTimeout(() => {
+        document.getElementById('envelope-screen').style.display = 'none';
+        document.getElementById('password-screen').style.display = 'flex';
+        setTimeout(() => document.getElementById('pw-input').focus(), 100);
+      }, 900);
+    }
+
+    /* ── Step 2: check password ── */
+    const CORRECT = '20250430';
+
+    function checkPassword() {
+      // Clear error while typing
+      document.getElementById('pw-error').textContent = '';
+      const input = document.getElementById('pw-input');
+      input.classList.remove('shake');
+      // Auto-submit when 8 chars entered
+      if (input.value.length === 8) submitPassword();
+    }
+
+    function submitPassword() {
+      const input = document.getElementById('pw-input');
+      if (input.value === CORRECT) {
+        unlockPage();
+      } else {
+        input.classList.add('shake');
+        document.getElementById('pw-error').textContent = '✦ Incorrect code. Try again...';
+        setTimeout(() => {
+          input.classList.remove('shake');
+          input.value = '';
+        }, 500);
+      }
+    }
+
+    // Allow Enter key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && document.getElementById('password-screen').style.display !== 'none') {
+        submitPassword();
+      }
+    });
+
+    /* ── Step 3: reveal the main page ── */
+    function unlockPage() {
+      const overlay = document.getElementById('gate-overlay');
+      const main    = document.getElementById('main-content');
+      overlay.classList.add('fade-out');
+      main.classList.add('revealed');
+      setTimeout(() => overlay.remove(), 900);
+    }
+  </script>
 
   <script src="app.js"></script>
 </body>
