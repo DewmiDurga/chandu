@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Chandu | Celebrating Your Story</title>
+  <meta name="description" content="A celebration of Chandu's journey through life, ambitions, and our love together.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Ambient Gold Dust Particles Canvas -->
+  <canvas id="starfield-canvas"></canvas>
+
+  <!-- Navigation / Audio Control -->
+  <header class="luxury-nav">
+    <div class="nav-brand">
+      <span class="gold-monogram">✧</span>
+      <span class="brand-text">FOREVER & ALWAYS</span>
+    </div>
+    <div class="nav-actions">
+      <!-- Birthday Song Toggle -->
+      <button id="music-toggle-btn" class="nav-btn gold-outline" title="Play Happy Birthday Song"
+        aria-label="Play Happy Birthday Song">
+        <span class="sound-wave">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        <span id="music-btn-text">🎵 Play Birthday Song</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-glow-orb"></div>
+    <div class="container hero-content">
+      <div class="luxury-badge">
+        <span class="badge-line"></span>
+        <span class="badge-text">CELEBRATING YOUR JOURNEY & FUTURE</span>
+        <span class="badge-line"></span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="sub-heading">Happy Birthday,</span>
+        <span class="gold-gradient-text hero-name">Chandu</span>
+      </h1>
+
+      <p class="hero-quote">
+        "Celebrating the wonderful chapters you've lived, the fire you carry in your heart, and all the brilliant
+        chapters still waiting to be written."
+      </p>
+
+      <div class="hero-cta-group">
+        <button id="celebrate-btn" class="btn-luxury-primary">
+          <span class="sparkle-icon">✦</span>
+          <span>Celebrate With Champagne Sparks</span>
+          <span class="sparkle-icon">✦</span>
+        </button>
+        <a href="#timeline-section" class="btn-luxury-ghost">
+          <span>Explore Your Chapters</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Love Letter / Birthday Message Section -->
+  <section class="section-container" id="letter-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">A HEARTFELT NOTE</span>
+        <h2 class="section-title">From My Heart To Yours</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="letter-card-wrapper">
+        <div class="letter-card">
+          <div class="letter-corner top-left"></div>
+          <div class="letter-corner top-right"></div>
+          <div class="letter-corner bottom-left"></div>
+          <div class="letter-corner bottom-right"></div>
+
+          <div class="letter-header">
+            <div class="wax-seal">
+              <span class="seal-letter">✧</span>
+            </div>
+            <div class="letter-date">Birthday Edition • Dedicated to You</div>
+          </div>
+
+          <div class="letter-body">
+            <h3 class="salutation">Dearest Chandu,</h3>
+            <div class="letter-text">
+              <p>Happy Birthday to the most ambitious, determined, and handsome person in my life! Today is a
+                celebration of who you are and everything you are growing to become.</p>
+              <p>I love the fire in your eyes when you talk about your dreams the passion and grit you carry for your
+                goals and your future inspire me endlessly. Remember that this is just the beginning of your story there
+                are so many brilliant chapters, achievements, and milestones still waiting for you ahead.</p>
+              <p>Take a deep breath and celebrate today to the fullest. Whatever challenges life brings your way, I
+                believe in you with all my heart, and I will always be right beside you, cheering you on through every
+                goal, every milestone, and every victory.God Bless You.</p>
+            </div>
+            <div class="letter-signoff">
+              <p class="sign-label">With endless love, pride, and faith in you,</p>
+              <p class="signature-text"> Dew ❤️</p>
+            </div>
+          </div>
+
+          <div class="letter-actions">
+            <button id="toast-btn" class="toast-btn">
+              <span>🥂 Make A Birthday Wish</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Life Stages Journey: 4 Photos of Chandu + Future Chapters -->
+  <section class="section-container" id="timeline-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">THE CHAPTERS OF YOU</span>
+        <h2 class="section-title">A Journey Still Unfolding</h2>
+        <p class="section-subtitle">Every season has shaped the incredible person you are with the brightest chapters
+          yet to come.</p>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="stages-timeline">
+        <!-- Stage 1 -->
+        <div class="stage-card" data-photo-id="0">
+          <div class="stage-badge">CHAPTER I • CHILDHOOD</div>
+          <div class="stage-img-wrapper">
+            <img src="assests/chandu 1.jpeg" alt="Chandu - Childhood Days" class="stage-img" loading="lazy">
+            <div class="stage-overlay">
+              <span>Click to view</span>
+            </div>
+          </div>
+          <div class="stage-info">
+            <h3 class="stage-title">The Little Adventurer</h3>
+            <p class="stage-desc">A playful boy in oversized shoes, full of boundless laughter, pure innocence, and
+              curiosity about the big world.</p>
+          </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="stage-card" data-photo-id="1">
+          <div class="stage-badge">CHAPTER II • SCHOOL DAYS</div>
+          <div class="stage-img-wrapper">
+            <img src="assests/chandu 2.png" alt="Chandu - School Days" class="stage-img" loading="lazy">
+            <div class="stage-overlay">
+              <span>Click to view</span>
+            </div>
+          </div>
+          <div class="stage-info">
+            <h3 class="stage-title">The Bright Dreamer</h3>
+            <p class="stage-desc">In his school uniform with quiet confidence, discovering his interests, making
+              lifelong memories, and dreaming big.</p>
+          </div>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="stage-card" data-photo-id="2">
+          <div class="stage-badge">CHAPTER III • UNIVERSITY</div>
+          <div class="stage-img-wrapper">
+            <img src="assests/chandu 3.jpeg" alt="Chandu - University Life" class="stage-img" loading="lazy">
+            <div class="stage-overlay">
+              <span>Click to view</span>
+            </div>
+          </div>
+          <div class="stage-info">
+            <h3 class="stage-title">Campus Life & Energy</h3>
+            <p class="stage-desc">Stepping into university life with passion, teamwork, faculty spirit, and stepping out
+              of his comfort zone.</p>
+          </div>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="stage-card" data-photo-id="3">
+          <div class="stage-badge">CHAPTER IV • PRESENT</div>
+          <div class="stage-img-wrapper">
+            <img src="assests/chandu 4.jpeg" alt="Chandu - The Scholar & Man Today" class="stage-img" loading="lazy">
+            <div class="stage-overlay">
+              <span>Click to view</span>
+            </div>
+          </div>
+          <div class="stage-info">
+            <h3 class="stage-title">Chasing The Dream</h3>
+            <p class="stage-desc">The handsome, driven young man today passionate about his future, working
+              relentlessly for his goals, and building something great.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter V & Beyond Banner -->
+      <div class="future-chapter-card">
+        <div class="future-icon">✦</div>
+        <div class="future-content">
+          <span class="future-tag">AND THE STORY CONTINUES...</span>
+          <h3 class="future-title">More Grand Chapters Await You</h3>
+          <p class="future-text">
+            Your journey is only just getting started. Graduations, career milestones, dreams fulfilled, and wonderful
+            adventures the future holds so many exciting chapters for you, and I can't wait to see you shine through
+            every single one.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Couple Feature Section: "US" -->
+  <section class="section-container couple-spotlight-section" id="us-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">MY FAVORITE CHAPTER</span>
+        <h2 class="section-title">And Then Our Worlds Met...</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="couple-spotlight-card" data-photo-id="4">
+        <div class="couple-gold-frame">
+          <div class="couple-img-container">
+            <img src="assests/us.jpeg" alt="Chandu and Me" class="couple-img" id="couple-photo-trigger">
+            <div class="couple-hover-badge">
+              <span>✦ Click to Enlarge ✦</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="couple-content">
+          <div class="couple-monogram">YOU & ME</div>
+          <h3 class="couple-heading">Walking Beside You</h3>
+          <p class="couple-text">
+            Through all the big dreams, busy days, and quiet evenings, having you in my life is my sweetest blessing. No
+            matter where your ambitions and goals take you, you will always have my unconditional love and support by
+            your side.
+          </p>
+          <div class="couple-quote">
+            "Behind every chapter of your success, I will always be your proudest cheerleader. Happy Birthday, my love!"
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reasons Why You Are Special -->
+  <section class="section-container" id="reasons-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">A FEW LITTLE THINGS</span>
+        <h2 class="section-title">Why You Are My Whole World</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="luxury-cards-grid">
+        <div class="luxury-card">
+          <div class="card-num">01</div>
+          <div class="card-icon">✧</div>
+          <h3>Your Ambition</h3>
+          <p>The fire you carry for your dreams and the discipline you bring to your goals inspires me every single day.
+            You never take shortcuts.</p>
+        </div>
+
+        <div class="luxury-card">
+          <div class="card-num">02</div>
+          <div class="card-icon">✦</div>
+          <h3>Your Kind Heart</h3>
+          <p>No matter how demanding or intense life gets, your genuine warmth, patience, and kindness never fade.</p>
+        </div>
+
+        <div class="luxury-card">
+          <div class="card-num">03</div>
+          <div class="card-icon">✧</div>
+          <h3>Your Handsome Smile</h3>
+          <p>Even on the most exhausting days, your smile has a superpower to make my whole world feel brighter and
+            lighter instantly.</p>
+        </div>
+
+        <div class="luxury-card">
+          <div class="card-num">04</div>
+          <div class="card-icon">✦</div>
+          <h3>My Safe Haven</h3>
+          <p>Being by your side brings a sense of calm and happiness that nothing else in this world can match.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Birthday Wish Box -->
+  <section class="section-container wish-box-section">
+    <div class="container">
+      <div class="wish-glass-box">
+        <h2 class="wish-box-title">Make Your Birthday Wish</h2>
+        <p class="wish-box-desc">Close your eyes, picture your biggest dream for your future, and blow out the flame to
+          lock it in!</p>
+
+        <div class="candle-wrapper" id="candle-trigger">
+          <div class="candle">
+            <div class="flame" id="candle-flame"></div>
+            <div class="wick"></div>
+            <div class="candle-body"></div>
+          </div>
+        </div>
+
+        <p class="candle-hint" id="candle-status">Click the flame to blow it out & lock in your wish!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Luxury Footer -->
+  <footer class="luxury-footer">
+    <div class="container footer-content">
+      <div class="footer-monogram">✦ CHANDU • HAPPY BIRTHDAY ✦</div>
+      <p class="footer-tagline">To the boy who dared to dream big, the man chasing his future, and the love of my life
+        forever.</p>
+      <div class="footer-bottom">
+        <button id="scroll-to-top" class="back-top-btn" aria-label="Back to Top">
+          ↑ Back to Top
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal for Fullscreen Photo Viewing -->
+  <div class="lightbox-modal" id="lightbox-modal" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-container">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close photo preview">✕</button>
+      <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous photo">❮</button>
+      <div class="lightbox-content">
+        <img src="" alt="Memory" id="lightbox-img" class="lightbox-img">
+        <div class="lightbox-caption">
+          <span id="lightbox-index"></span>
+          <p id="lightbox-text">Our Cherished Memory</p>
+        </div>
+      </div>
+      <button class="lightbox-nav next" id="lightbox-next" aria-label="Next photo">❯</button>
+    </div>
+  </div>
+
+  <!-- Canvas for Confetti & Toast Sparkles -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
